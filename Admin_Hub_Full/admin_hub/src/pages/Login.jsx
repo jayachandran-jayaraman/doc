@@ -11,8 +11,8 @@ const Login = () => {
   const [role, setRole] = useState("admin");
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    username: "",
+    // password: "",
     checkbox: false,
   });
 
@@ -33,10 +33,10 @@ const Login = () => {
   const validate = () => {
     let newErrors = {};
 
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+    if (!formData.username) {
+      newErrors.username = "username is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.username)) {
+      newErrors.username = "Invalid username format";
     }
 
     if (!formData.password) {
@@ -88,7 +88,6 @@ const Login = () => {
     <div className="login-container">
       <div className="login-card">
 
-        {/* 🔄 Switch */}
         <div className="switch-container">
           <div className={`slider ${role === "user" ? "right" : "left"}`}></div>
 
@@ -109,16 +108,17 @@ const Login = () => {
 
         <h2>{role === "admin" ? "Admin Login" : "User Login"}</h2>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <div className="input-group">
             <input
               type="text"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
+              name="username"
+              placeholder="Username"
+              value={formData.username}
               onChange={handleChange}
+              autoComplete="new-username"
             />
-            {errors.email && <p className="error">{errors.email}</p>}
+            {errors.username && <p className="error">{errors.username}</p>}
           </div>
 
           <div className="input-group password-wrapper">
@@ -128,6 +128,7 @@ const Login = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
+              autoComplete="new-password"
             />
             <span
               className="toggle"
@@ -161,6 +162,7 @@ const Login = () => {
           {serverMessage && (
             <p className="server-message">{serverMessage}</p>
           )}
+
         </form>
       </div>
     </div>
