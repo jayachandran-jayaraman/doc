@@ -12,7 +12,7 @@ const Login = () => {
 
   const [formData, setFormData] = useState({
     username: "",
-    // password: "",
+    password: "",
     checkbox: false,
   });
 
@@ -63,7 +63,7 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ...formData, role }), // 👈 send role
+          body: JSON.stringify({ ...formData, role }), 
         });
 
         const data = await response.json();
