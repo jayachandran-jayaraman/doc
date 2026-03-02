@@ -34,3 +34,158 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+
+/* App.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-box {
+  width: 40px;
+  height: 40px;
+  background-color: #e74c3c; /* Red color from screenshot */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Profile Dropdown Styles */
+.profile-container {
+  position: relative;
+}
+
+.profile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.profile-trigger:hover {
+  background-color: #f0f2f5;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #ccc; /* Fallback color */
+}
+
+.dropdown-icon {
+  font-size: 12px;
+  color: #555;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 150px;
+  z-index: 100;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.dropdown-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Dashboard Body Styles */
+.dashboard-body {
+  background-color: #d6eaf8; /* Light blue background from screenshot */
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.button-container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Action Button Component Styles */
+.action-btn {
+  width: 220px;
+  height: 140px;
+  background-color: #f7f9f9; /* Light grey button color */
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  background-color: #ffffff;
+}
+
+.btn-icon {
+  font-size: 40px;
+  color: #7f8c8d;
+}
+
+.btn-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c3e50;
+  text-align: center;
+  line-height: 1.3;
+}

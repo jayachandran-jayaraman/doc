@@ -1,11 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Udboard from "./pages/User pages/Udboard";
+ 
+import "./App.css";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/dashboard" element={<h1>Dashboard</h1>} />
+   
+      <Route path="/dashboard" element={<Udboard />} />
+      
     </Routes>
   );
 }
