@@ -9,16 +9,14 @@ const Header = () => {
 
   return (
     <header className="header">
-      {/* Left Side: Logo and Title */}
       <div className="logo-container">
         <div className="logo-box">LOGO</div>
         <span className="logo-text">Department Dash Bord</span>
       </div>
 
-      {/* Right Side: Profile Dropdown */}
       <div className="profile-container">
         <div className="profile-trigger" onClick={toggleDropdown}>
-          {/* Using a placeholder image for the avatar */}
+
           <img 
             src="https://via.placeholder.com/40" 
             alt="User Avatar" 
@@ -27,7 +25,6 @@ const Header = () => {
           <span className="dropdown-icon">▼</span>
         </div>
 
-        {/* Dropdown Menu (Conditional Rendering) */}
         {isDropdownOpen && (
           <div className="dropdown-menu">
             <div className="dropdown-item">Profile</div>

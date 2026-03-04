@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Login.css";
 import { FaUserShield, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -33,10 +33,8 @@ const Login = () => {
   const validate = () => {
     let newErrors = {};
 
-    if (!formData.username) {
-      newErrors.username = "username is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.username)) {
-      newErrors.username = "Invalid username format";
+    if (!formData.username.trim()) {
+      newErrors.username = "Username is required";
     }
 
     if (!formData.password) {
@@ -45,11 +43,16 @@ const Login = () => {
       newErrors.password = "Minimum 6 characters required";
     }
 
+    if (!formData.checkbox) {
+      newErrors.checkbox = "You must accept T & C";
+    }
+
     return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const validationErrors = validate();
     setErrors(validationErrors);
     setServerMessage("");
@@ -63,7 +66,11 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ...formData, role }), 
+          body: JSON.stringify({
+            username: formData.username,
+            password: formData.password,
+            role: role,
+          }),
         });
 
         const data = await response.json();
@@ -72,7 +79,11 @@ const Login = () => {
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("role", role);
 
-          navigate("/dashboard");
+          if (role === "admin") {
+            navigate("/dashboard");
+          } else {
+            navigate("/udbord");
+          }
         } else {
           setServerMessage(data.message || "Login failed");
         }
@@ -109,6 +120,7 @@ const Login = () => {
         <h2>{role === "admin" ? "Admin Login" : "User Login"}</h2>
 
         <form onSubmit={handleSubmit} autoComplete="off">
+
           <div className="input-group">
             <input
               type="text"
@@ -116,7 +128,7 @@ const Login = () => {
               placeholder="Username"
               value={formData.username}
               onChange={handleChange}
-              autoComplete="new-username"
+              autoComplete="off"
             />
             {errors.username && <p className="error">{errors.username}</p>}
           </div>
@@ -128,7 +140,7 @@ const Login = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              autoComplete="new-password"
+              autoComplete="off"
             />
             <span
               className="toggle"
@@ -140,18 +152,22 @@ const Login = () => {
           </div>
 
           <div className="login-options">
-            <label>
-              <input
-                type="checkbox"
-                name="checkbox"
-                checked={formData.checkbox}
-                onChange={handleChange}
-              />
-              T & C Apply
-            </label>
+            <div>
+              <label>
+                <input
+                  type="checkbox"
+                  name="checkbox"
+                  checked={formData.checkbox}
+                  onChange={handleChange}
+                />
+                T & C Apply
+              </label>
+              {errors.checkbox && <p className="error">{errors.checkbox}</p>}
+            </div>
 
             <a href="/forgot-password">Forgot Password?</a>
           </div>
+
 
           <div className="button-wrapper">
             <button type="submit" disabled={loading}>
